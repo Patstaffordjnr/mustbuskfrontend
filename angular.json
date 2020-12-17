@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "mustbuskfrontend"
+  "defaultProject": "mustbuskfrontend",
+  "cli": {
+    "analytics": "5cdab324-9bfa-4ffe-b167-8cda4e45bbad"
+  }
 }
