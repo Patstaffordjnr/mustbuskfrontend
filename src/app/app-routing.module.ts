@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './fe/login/login.component';
+import { MainmenuComponent } from './mainmenu/mainmenu.component'
+import { LoginComponent } from './login/login.component'
+
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent }
+  { path: 'mainmenu', component: MainmenuComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -15,3 +18,9 @@ const routes: Routes = [
 
 
 export class AppRoutingModule { }
+
+
+// RouterModule.forRoot(
+//   appRoutes,
+//   { enableTracing: true } // <-- debugging purposes only
+// )
