@@ -1,15 +1,12 @@
-// import { Hero } from './hero';
+import { BrowserModule } from '@angular/platform-browser';
+import { Menu } from './menuinterface'
 
-// export const HEROES: Hero[] = [
-//   { id: 11, name: 'Dr Nice' },
-//   { id: 12, name: 'Narco' },
-//   { id: 13, name: 'Bombasto' },
-//   { id: 14, name: 'Celeritas' },
-//   { id: 15, name: 'Magneta' },
-//   { id: 16, name: 'RubberMan' },
-//   { id: 17, name: 'Dynama' },
-//   { id: 18, name: 'Dr IQ' },
-//   { id: 19, name: 'Magma' },
-//   { id: 20, name: 'Tornado' }
-// ];
 
+export const Mainmenu: Menu[] = [
+    { id: '0', name: 'Login' },
+    { id: '1', name: 'Register' },
+    { id: '2', name: 'Buskers' },
+    { id: '3', name: 'Popular' },
+    { id: '4', name: 'Settings' },
+
+];

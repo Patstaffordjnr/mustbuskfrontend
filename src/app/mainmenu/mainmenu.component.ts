@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Menu } from './menuinterface'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { Mainmenu } from './mainmenu'
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 
 
@@ -15,12 +18,12 @@ import { Routes, RouterModule } from '@angular/router';
 })
 
 
+
+
 export class MainmenuComponent implements OnInit {
 
-  Menu: Menu = {
-    id: '1',
-    name: 'LISTITEMS'
-  };
+  Menu = Mainmenu;
+
 
 
 
@@ -29,3 +32,5 @@ export class MainmenuComponent implements OnInit {
   ngOnInit(): void {
   }
 }
+
+console.log(Mainmenu);
