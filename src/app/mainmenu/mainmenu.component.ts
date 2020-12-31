@@ -30,7 +30,7 @@ export class MainmenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.Menu);
   }
 }
 
-console.log(Mainmenu);

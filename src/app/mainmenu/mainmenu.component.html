@@ -5,10 +5,20 @@
 
 
 
-<div *ngFor="let Mainmenu of Menu"></div>
+
+<ul>
+<li *ngFor="let menu of Menu">
+{{menu.id}}
+{{menu.name}}
+</li>
+</ul>
 
 
-<ul class="Menu">
+
+
+
+
+<!-- <ul class="Menu">
     <li>
       {{Menu[0].name}}, {{Menu[0].id}}<a routerLink="/login" routerLinkActive="active">Login</a>
     <li>
@@ -20,15 +30,7 @@
       <li>
         {{Menu[4].name}}, {{Menu[4].id}} <a routerLink="/login" routerLinkActive="active">Settings</a>
   </li>
-  </ul>
-
-  <li *ngFor="menu"></li>
+  </ul> -->
 
 
-
-  <ul class="Menu">
-    <li>
-      {{Menu}} 
-    <li>
-    </ul>
 
