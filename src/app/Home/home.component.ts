@@ -7,7 +7,7 @@ import { UserService, AuthenticationService } from '../_services';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
-    users: User[];
+    users: User[] = new Array();
 
     constructor(private userService: UserService) { }
 

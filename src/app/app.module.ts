@@ -40,6 +40,7 @@ import { HomeComponent } from './Home/home.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    HttpClientModule,
 
 
 

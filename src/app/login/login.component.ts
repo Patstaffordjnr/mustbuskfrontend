@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthenticationService } from '../_services';
 
 
 @Component({
@@ -11,28 +12,42 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 
 })
-export class LoginComponent {
-  // loginComponent = new FormControl('');
-  profileForm = new FormGroup({
+export class LoginComponent  implements OnInit {
+  loginForm: FormGroup;
 
-    email: new FormControl(''),
-    password: new FormControl(''),
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService
+) { 
+  this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
   });
+    // redirect to home if already logged in
+    // if (this.authenticationService.currentUserValue) { 
+    //     this.router.navigate(['/']);
+    // }
+}
+
+  ngOnInit() {
+  }
+
+  get f() { return this.loginForm.controls; }
 
   onSubmit() {
 
-    console.log(this.profileForm.controls['email'].value);
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+        return;
+    }
+
+    console.log(this.loginForm.controls['email'].value);
   }
+  loading = false;
+  submitted = false;
+  error = '';
 
 
 }
-
-// @Component({
-//   selector: 'app-reactive-favorite-color',
-//   template: `
-//     Favorite Color: <input type="text" [formControl]="favoriteColorControl">
-//   `
-// })
-// export class FavoriteColorComponent {
-//   favoriteColorControl = new FormControl('');
-// }
