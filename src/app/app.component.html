@@ -1,18 +1,12 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- <a routerLink="/login" routerLinkActive="active">Main Menu</a> -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
 
+<!-- main app container -->
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
 
-<!-- <a routerLink="/mainmenu" routerLinkActive="active">MainMenu</a> -->
-<!-- <a routerLink="/login" routerLinkActive="active">LOGIN</a> -->
-
-<a routerLink="/mainmenu" routerLinkActive="active">Menu</a>
-<!-- { path: 'loginComponent', component: LoginComponent }, -->
-
-<router-outlet></router-outlet>

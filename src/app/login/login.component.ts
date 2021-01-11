@@ -1,38 +1,102 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormGroup, FormControl } from '@angular/forms';
+import { AuthenticationService } from '../_services/authentication.service';
 
+@Component({ templateUrl: 'login.component.html' })
+export class LoginComponent implements OnInit {
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    error = '';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) { 
+        // redirect to home if already logged in
+        if (this.authenticationService.currentUserValue) { 
+            this.router.navigate(['/']);
+        }
+    }
+ 
 
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+    }
 
-})
-export class LoginComponent {
-  // loginComponent = new FormControl('');
-  profileForm = new FormGroup({
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
 
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
+    onSubmit() {
+        this.submitted = true;
 
-  onSubmit() {
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
 
-    console.log(this.profileForm.controls['email'].value);
-  }
-
-
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    // get return url from route parameters or default to '/'
+                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                    this.router.navigate([returnUrl]);
+                },
+                error: error => {
+                    this.error = error;
+                    this.loading = false;
+                }
+            });
+    }
 }
 
+
+
+// import { Component } from '@angular/core';
+
+// import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+// import { FormGroup, FormControl } from '@angular/forms';
+
+
 // @Component({
-//   selector: 'app-reactive-favorite-color',
-//   template: `
-//     Favorite Color: <input type="text" [formControl]="favoriteColorControl">
-//   `
+//   selector: 'app-login',
+//   templateUrl: './login.component.html',
+//   styleUrls: ['./login.component.css']
+
+
 // })
-// export class FavoriteColorComponent {
-//   favoriteColorControl = new FormControl('');
+// export class LoginComponent {
+//   // loginComponent = new FormControl('');
+//   profileForm = new FormGroup({
+
+//     email: new FormControl(''),
+//     password: new FormControl(''),
+//   });
+
+//   onSubmit() {
+
+//     console.log(this.profileForm.controls['email'].value);
+//   }
+
+
 // }
+
+// // @Component({
+// //   selector: 'app-reactive-favorite-color',
+// //   template: `
+// //     Favorite Color: <input type="text" [formControl]="favoriteColorControl">
+// //   `
+// // })
+// // export class FavoriteColorComponent {
+// //   favoriteColorControl = new FormControl('');
+// // }
