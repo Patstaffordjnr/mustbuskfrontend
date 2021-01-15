@@ -7,7 +7,7 @@ import { UserService } from '../_services/user.service';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
-    users: User[];
+    users: User[] = [];
 
     constructor(private userService: UserService) { }
 

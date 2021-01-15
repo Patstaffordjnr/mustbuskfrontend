@@ -1,51 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// import { environment } from '@environments/environment';
+import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<User> | undefined;
-    public currentUser: Observable<User> | undefined;
+    private currentUserSubject!: BehaviorSubject<User>;
+    private currentUser!: Observable<User>;
+    
+    private readonly USER_STRING = 'currentUser';
 
     constructor(private http: HttpClient){
-        const currentUserString = localStorage.getItem('currentUser');
-        if (currentUserString) {
-                    
+        const currentUserString = localStorage.getItem(this.USER_STRING);
+        if (currentUserString) {                    
             this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(currentUserString));
-            this.currentUser = this.currentUserSubject.asObservable();
-        }
-
-       
-        
+            this.currentUser = this.currentUserSubject.asObservable();    
+        } 
     }
 
-
-    public get currentUserValue(): User {
-
-        if (this.currentUserSubject){
+    public get currentUserValue(): User | null {
+        if(this.currentUserSubject) {
             return this.currentUserSubject.value;
+        } else {
+            return null;
         }
-
-        return;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
-            }));
+    async login(username: string, password: string): Promise<User | null> {
+        let headers = new HttpHeaders();
+        const token = btoa(username + ':' + password);
+        headers = headers.append("Authorization", "Basic " + token);
+        headers = headers.append("Content-Type", "application/json");
+
+        this.http.get(`${environment.site}auth/user`, {headers: headers}).subscribe(resp => {
+        });
+
+        return null;
     }
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        localStorage.removeItem(this.USER_STRING);
+        this.currentUserSubject.unsubscribe();
     }
 }

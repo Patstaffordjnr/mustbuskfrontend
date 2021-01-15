@@ -7,15 +7,15 @@ import { User } from '../app/_models/user';
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
-    currentUser: User;
+    currentUser!: User;
 
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService
     ) {
-        
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-        this.currentUser = new User();
+        if(this.authenticationService.currentUserValue) {
+            this.currentUser = this.authenticationService.currentUserValue;
+        }
     }
 
     logout() {

@@ -7,7 +7,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+    loginForm!: FormGroup;
     loading = false;
     submitted = false;
     error = '';
@@ -27,15 +27,15 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
+            username: ['patstaffordjnr@gmail.com', Validators.required],
+            password: ['patrickIsDumb', Validators.required]
         });
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
-    onSubmit() {
+    async onSubmit() {
         this.submitted = true;
 
         // stop here if form is invalid
@@ -44,59 +44,6 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    // get return url from route parameters or default to '/'
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    this.router.navigate([returnUrl]);
-                },
-                error: error => {
-                    this.error = error;
-                    this.loading = false;
-                }
-            });
+        const user = await this.authenticationService.login(this.f.username.value, this.f.password.value);
     }
 }
-
-
-
-// import { Component } from '@angular/core';
-
-// import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-// import { FormGroup, FormControl } from '@angular/forms';
-
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css']
-
-
-// })
-// export class LoginComponent {
-//   // loginComponent = new FormControl('');
-//   profileForm = new FormGroup({
-
-//     email: new FormControl(''),
-//     password: new FormControl(''),
-//   });
-
-//   onSubmit() {
-
-//     console.log(this.profileForm.controls['email'].value);
-//   }
-
-
-// }
-
-// // @Component({
-// //   selector: 'app-reactive-favorite-color',
-// //   template: `
-// //     Favorite Color: <input type="text" [formControl]="favoriteColorControl">
-// //   `
-// // })
-// // export class FavoriteColorComponent {
-// //   favoriteColorControl = new FormControl('');
-// // }
