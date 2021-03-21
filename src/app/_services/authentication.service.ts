@@ -15,35 +15,51 @@ export class AuthenticationService {
 
     constructor(private http: HttpClient){
         const currentUserString = localStorage.getItem(this.USER_STRING);
-        if (currentUserString) {                    
+       
+      
+        
+        if (currentUserString) {                
             this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(currentUserString));
-            this.currentUser = this.currentUserSubject.asObservable();    
+            this.currentUser = this.currentUserSubject.asObservable();  
+            console.log(this.currentUserSubject.value);
         } 
     }
 
     public get currentUserValue(): User | null {
         if(this.currentUserSubject) {
-            return this.currentUserSubject.value;
+        return this.currentUserSubject.value;
         } else {
-            return null;
+        return null;
         }
     }
-
-    async login(username: string, password: string): Promise<User | null> {
+  
+    async login(username: string, password: string): Promise<String | void> {
         let headers = new HttpHeaders();
         const token = btoa(username + ':' + password);
         headers = headers.append("Authorization", "Basic " + token);
         headers = headers.append("Content-Type", "application/json");
 
         this.http.get(`${environment.site}auth/user`, {headers: headers}).subscribe(resp => {
+            
+            localStorage.setItem('currentUser', JSON.stringify(resp));
+            this.currentUserSubject = new BehaviorSubject<User>(resp);
+            this.currentUserSubject.next(resp);
+            let user = JSON.parse(JSON.stringify(resp)) as User;
+         
+            console.log(user.email);
+                return resp; 
         });
-
-        return null;
     }
-
+    
     logout() {
+        
         // remove user from local storage to log user out
         localStorage.removeItem(this.USER_STRING);
-        this.currentUserSubject.unsubscribe();
+        this.currentUserSubject.unsubscribe(); 
     }
 }
+
+
+
+
+

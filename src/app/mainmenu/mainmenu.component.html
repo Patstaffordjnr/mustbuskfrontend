@@ -1,37 +1,41 @@
-<!-- <h2>{{Menu.name}} Details</h2>
-<div><span>id: </span>{{Menu.id}}</div>
-<div><span>name: </span>{{Menu.name}}</div> -->
-
-
-
-
-<div *ngFor="let Mainmenu of Menu"></div>
-
-
-<ul class="Menu">
+<ul>
     <li>
-      {{Menu[0].name}}, {{Menu[0].id}}<a routerLink="/login" routerLinkActive="active">Login</a>
-    <li>
-      {{Menu[1].name}}, {{Menu[1].id}} <a routerLink="/login" routerLinkActive="active">Register</a>
-      <li>
-      {{Menu[2].name}}. {{Menu[2].id}} <a routerLink="/login" routerLinkActive="active">Buskers</a>
-    <li>
-      {{Menu[3].name}}, {{Menu[3].id}} <a routerLink="/login" routerLinkActive="active">Popular</a>
-      <li>
-        {{Menu[4].name}}, {{Menu[4].id}} <a routerLink="/login" routerLinkActive="active">Settings</a>
-  </li>
+      <span>{{menu}}</span>
+    </li>
   </ul>
 
 
-<ul>
-  <li *ngFor="let menu of Menu"></li>
-</ul>
 
 
 
-  <!-- <ul class="Menu">
-    <li>
-      {{Menu.id}} 
-    <li>
-    </ul> -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <li>{{menu.id}}</li> -->
+
+<!-- 
+<li *ngFor="let menu of menu">
+
+    {{menu}}
+</li>
+
+<li *ngFor="let menu of Mainmenu">
+
+    {{menu}}
+</li>
+
+
+<li>{{menu}}</li> -->

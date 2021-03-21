@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Menu } from './menuinterface'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-import { Mainmenu } from './mainmenu'
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-
-
+import { Mainmenu } from './mainmenu';
+import { AuthenticationService } from '../_services/authentication.service'
+import { UserService } from '../_services/user.service'
+import { User } from '../_models/user';
 
 
 @Component({
@@ -16,21 +11,16 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./mainmenu.component.css']
 
 })
-
-
-
-
 export class MainmenuComponent implements OnInit {
 
-  Menu = Mainmenu;
+    menu = JSON.stringify(Mainmenu);
+    
+   
 
+  constructor() { 
+    
 
-
-
-  constructor() { }
-
+  }
   ngOnInit(): void {
   }
 }
-
-console.log(Mainmenu);

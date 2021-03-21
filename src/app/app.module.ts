@@ -9,6 +9,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor.ts'
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MainmenuComponent } from '../app/mainmenu/mainmenu.component'
+import { Mainmenu } from './mainmenu/mainmenu';
 
 @NgModule({
     imports: [
@@ -20,7 +22,9 @@ import { LoginComponent } from './login/login.component';
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        MainmenuComponent
+        
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
