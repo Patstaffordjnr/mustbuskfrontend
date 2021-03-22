@@ -5,12 +5,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ErrorInterceptor } from './_helpers/error.interceptor.ts'
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { MainmenuComponent } from '../app/mainmenu/mainmenu.component'
-import { Mainmenu } from './mainmenu/mainmenu';
+import { ErrorInterceptor } from './helpers/error.interceptor.ts'
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 @NgModule({
     imports: [
@@ -22,8 +21,8 @@ import { Mainmenu } from './mainmenu/mainmenu';
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent,
-        MainmenuComponent
+        LoginComponent
+       
         
     ],
     providers: [

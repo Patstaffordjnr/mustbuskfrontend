@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { User } from '../_models/user';
+import { User } from './user/User';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -12,6 +12,7 @@ export class AuthenticationService {
     private currentUser!: Observable<User>;
     
     private readonly USER_STRING = 'currentUser';
+    private readonly TOKEN = 'currentUser';
 
     constructor(private http: HttpClient){
         const currentUserString = localStorage.getItem(this.USER_STRING);
