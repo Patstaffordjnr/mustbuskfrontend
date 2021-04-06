@@ -1,1 +1,14 @@
-<a routerLink="/login" routerLinkActive="active">LOGIN</a>
+<li>
+<a routerLink="/guest" routerLinkActive="active" >Guest</a>
+</li>
+<li>
+<a routerLink="/user" routerLinkActive="active" >User</a>
+</li>
+<li>
+<a routerLink="/busker" routerLinkActive="active" >Busker</a>
+</li>
+
+
+<li *ngIf="enableLinkForRole(role.USER)">
+    <a routerLink="/user" routerLinkActive="active" >User</a>
+    </li>

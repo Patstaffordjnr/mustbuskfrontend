@@ -9,6 +9,9 @@ import { ErrorInterceptor } from './helpers/error.interceptor.ts'
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { GuestuiComponent } from '../ui/guestui/guestui.component';
+import { UseruiComponent } from '../ui/userui/userui.component';
+import { BuskeruiComponent } from '../ui/buskerui/buskerui.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { LoginComponent } from './pages/login/login.component';
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        GuestuiComponent,
+        UseruiComponent,
+        BuskeruiComponent
        
         
     ],

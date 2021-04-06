@@ -45,5 +45,12 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         const user = await this.authenticationService.login(this.f.username.value, this.f.password.value);
+
+        if(this.loading === true) {
+            
+            
+        }
     }
+
+    
 }
