@@ -1,43 +1,33 @@
 import { Component } from '@angular/core';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Role } from 'src/app/services/user/Role';
+import { RoleName } from 'src/app/services/user/RoleName';
 import { User } from 'src/app/services/user/User';
-import { UserService } from '../../services/user/user.service';
-import { Role } from '../../services/user/Role'
+import { UtilService } from 'src/app/services/util.service';
 
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
-    role = Role;
-    
+    roleName = RoleName;
+    userRoles!: Set<RoleName>;  
 
-    constructor(private authenticationService: AuthenticationService) { }
+    constructor(private authenticationService: AuthenticationService, private utilService: UtilService) { }
 
     ngOnInit() {
         this.loading = true;
         if(this.authenticationService.currentUser){
             this.authenticationService.currentUser.subscribe(user => {
-                console.log(user.email);
-            });
+                this.userRoles = this.utilService.getRoleNames(user);
+            })
+        }; 
+    }
 
-           
-        }
-    };
-
-    enableLinkForRole(role: Role): boolean {
-
+    enableLinkForRole(roleName: RoleName): boolean {
         let enable = false
-        if(this.authenticationService.currentUser){
-            this.authenticationService.currentUser.subscribe(user => {
-              debugger;
-
-              let test = user.roles as Set<Role>;
-
-              enable = user.roles.has(role);
-              console.log(enable)
-            }    
-            )};
-            return enable;
+        if (this.userRoles) {
+            enable = this.userRoles.has(roleName);
+        }
+        return enable;        
     }
 }

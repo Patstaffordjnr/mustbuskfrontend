@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { User } from './user/User';
@@ -57,7 +56,9 @@ export class AuthenticationService {
     logout() {
         localStorage.removeItem(this.USER_STRING);
         localStorage.removeItem(this.TOKEN_STRING);
-        this.currentUserSubject.unsubscribe();
+        if (this.currentUserSubject) {
+            this.currentUserSubject.unsubscribe();
+        }
     }
 }
 
