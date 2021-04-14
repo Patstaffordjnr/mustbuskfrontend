@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute,ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../services/authentication.service';
+import { HomeComponent } from '../home/home.component';
+
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -45,12 +47,15 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         const user = await this.authenticationService.login(this.f.username.value, this.f.password.value);
+        
 
         if(this.loading === true) {
+            setTimeout(function(){
+                location.reload();
+            }, 2500)         
             
-            
-        }
     }
 
     
+}
 }

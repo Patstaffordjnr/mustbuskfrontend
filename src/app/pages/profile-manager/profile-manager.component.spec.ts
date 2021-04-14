@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UseruiComponent } from './userui.component';
+import { ProfileManagerComponent } from './profile-manager.component';
 
-describe('UseruiComponent', () => {
-  let component: UseruiComponent;
-  let fixture: ComponentFixture<UseruiComponent>;
+describe('ProfileManagerComponent', () => {
+  let component: ProfileManagerComponent;
+  let fixture: ComponentFixture<ProfileManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UseruiComponent ]
+      declarations: [ ProfileManagerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UseruiComponent);
+    fixture = TestBed.createComponent(ProfileManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

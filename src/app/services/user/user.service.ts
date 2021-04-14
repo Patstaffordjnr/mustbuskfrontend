@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { User } from './User';
-import { RoleName } from './RoleName';
+import { RoleName } from './role/RoleName';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

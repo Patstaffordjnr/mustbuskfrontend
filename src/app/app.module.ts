@@ -9,9 +9,19 @@ import { ErrorInterceptor } from './helpers/error.interceptor.ts'
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { GuestuiComponent } from '../ui/guestui/guestui.component';
-import { UseruiComponent } from '../ui/userui/userui.component';
-import { BuskeruiComponent } from '../ui/buskerui/buskerui.component';
+
+import { AdminComponent } from '../ui/admin/admin.component';
+import { UserComponent } from '../ui/user/user.component';
+import { BuskerComponent } from '../ui/busker/busker.component';
+
+
+import { FormsModule } from '@angular/forms';
+import { RegistrationComponent } from './pages/registration/registration.component';
+import { ProfileManagerComponent } from './pages/profile-manager/profile-manager.component';
+
+
+
+
 
 
 @NgModule({
@@ -19,16 +29,24 @@ import { BuskeruiComponent } from '../ui/buskerui/buskerui.component';
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule,
+        
+        
+       
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         LoginComponent,
-        GuestuiComponent,
-        UseruiComponent,
-        BuskeruiComponent
-       
+        AdminComponent,
+        UserComponent,
+        BuskerComponent,
+        RegistrationComponent,
+        ProfileManagerComponent,
+  
+   
+    
         
     ],
     providers: [

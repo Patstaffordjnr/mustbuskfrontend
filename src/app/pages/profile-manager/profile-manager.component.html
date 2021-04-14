@@ -1,0 +1,43 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label>
+        Email:
+        <input type="text" formControlName="email">
+    </label>
+
+    <label>
+        ID:
+        <input type="text" formControlName="id">
+    </label>
+
+    <label>
+        Password:
+        <input type="text" formControlName="password">
+    </label>
+    
+    <label>
+        First Name:
+        <input type="text" formControlName="lastName">
+    </label>
+
+    <label>
+        Last Name:
+        <input type="text" formControlName="lastName">
+    </label>
+
+    <label for="active"></label>
+    <select id="active" formControlName="active">
+    <option [ngValue]="null">Select one...</option>
+    <option *ngFor="let active of eActive | keyvalue" [ngValue]="active.value">{{active.value}}</option>
+    </select>
+
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+    <div *ngFor="let role of roles; let i=index" class="col-md-2">
+        <label>
+          <input type="checkbox" [value]="role.roleName" (change)="onCheckChange(role)">
+          {{role.roleName}}
+        </label>
+      </div>
+
+</form>
+

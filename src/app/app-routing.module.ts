@@ -4,20 +4,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { AdminComponent } from 'src/ui/admin/admin.component';
+import { BuskerComponent } from 'src/ui/busker/busker.component';
+import { UserComponent } from 'src/ui/user/user.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
+import { ProfileManagerComponent } from './pages/profile-manager/profile-manager.component';
 
-import { GuestuiComponent } from '../ui/guestui/guestui.component'; 
-import { UseruiComponent } from '../ui/userui/userui.component';
-import { BuskeruiComponent } from '../ui/buskerui/buskerui.component';
+
 
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent },
-    { path: 'Guest', component: GuestuiComponent, canActivate: [AuthGuard] },
-    { path: 'User', component: UseruiComponent, canActivate: [AuthGuard] },
-    { path: 'Busker', component: BuskeruiComponent, canActivate: [AuthGuard] },
-   
-    
+    { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+    { path: 'busker', component: BuskerComponent, canActivate: [AuthGuard] },
+    { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+    { path: 'registration', component: RegistrationComponent},
+    { path: 'profile-manager', component: ProfileManagerComponent},
     // { path: 'logged-in', component: LoginComponent },
 
     // otherwise redirect to home

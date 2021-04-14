@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuskeruiComponent } from './buskerui.component';
+import { BuskerComponent } from './busker.component';
 
-describe('BuskeruiComponent', () => {
-  let component: BuskeruiComponent;
-  let fixture: ComponentFixture<BuskeruiComponent>;
+describe('BuskerComponent', () => {
+  let component: BuskerComponent;
+  let fixture: ComponentFixture<BuskerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BuskeruiComponent ]
+      declarations: [ BuskerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuskeruiComponent);
+    fixture = TestBed.createComponent(BuskerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

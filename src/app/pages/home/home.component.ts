@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Role } from 'src/app/services/user/Role';
-import { RoleName } from 'src/app/services/user/RoleName';
+import { Role } from 'src/app/services/user/role/Role';
+import { RoleName } from 'src/app/services/user/role/RoleName';
 import { User } from 'src/app/services/user/User';
 import { UtilService } from 'src/app/services/util.service';
 
