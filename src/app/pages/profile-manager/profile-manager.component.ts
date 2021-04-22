@@ -9,6 +9,7 @@ import { Role } from '../../services/user/role/Role';
 import { HomeComponent } from '../home/home.component';
 import { User } from '../.../../../services/user/User'
 import { throwError } from 'rxjs';
+import { UserService } from 'src/app/services/user/user.service';
 
  
 @Component({
@@ -28,19 +29,20 @@ export class ProfileManagerComponent implements  OnInit {
   eActive = Active;
 
   roles = new Array<Role>();
+  rolesSet = new Set<Role>();
   roleStrings = new Array<string>();
   profileForm = new FormGroup({
    
-  email: new FormControl(''),
+  email: new FormControl('paul@paul.com'),
   id: new FormControl(''),
-  password: new FormControl(''),
-  firstName: new FormControl(''),
-  lastName: new FormControl(''),
+  password: new FormControl('paul@paul.com'),
+  firstName: new FormControl('paul'),
+  lastName: new FormControl('stafford'),
   active: new FormControl(null, [Validators.required]),
   Roles: new FormControl(),
  });
 
-constructor(private roleService: RoleService) {
+constructor(private roleService: RoleService, private userServce: UserService) {
   
 }
 
@@ -58,9 +60,12 @@ async ngOnInit() {
      
 }
 
- onSubmit() {
+async onSubmit() {
   // TODO: Use EventEmitter with form value
   console.log(this.profileForm.value);
+  let user = new User('paul@paul.com', 'paul', 'paul', 'paul', Array.from(this.rolesSet.values()));
+  const newUser = await this.userServce.addUser(user);
+  debugger;
 }
 
 onCheckChange(role: Role): void {
