@@ -33,11 +33,11 @@ export class ProfileManagerComponent implements  OnInit {
   roleStrings = new Array<string>();
   profileForm = new FormGroup({
    
-  email: new FormControl('paul@paul.com'),
-  id: new FormControl(''),
-  password: new FormControl('paul@paul.com'),
-  firstName: new FormControl('paul'),
-  lastName: new FormControl('stafford'),
+  email: new FormControl(''),
+  id: new FormControl(null),
+  password: new FormControl(''),
+  firstName: new FormControl(''),
+  lastName: new FormControl(''),
   active: new FormControl(null, [Validators.required]),
   Roles: new FormControl(),
  });
@@ -45,6 +45,7 @@ export class ProfileManagerComponent implements  OnInit {
 constructor(private roleService: RoleService, private userServce: UserService) {
   
 }
+
 
 async ngOnInit() {
 
@@ -60,13 +61,40 @@ async ngOnInit() {
      
 }
 
+
+
+
+
+
 async onSubmit() {
   // TODO: Use EventEmitter with form value
   console.log(this.profileForm.value);
-  let user = new User('paul@paul.com', 'paul', 'paul', 'paul', Array.from(this.rolesSet.values()));
+  let user = new User(this.profileForm.controls.id.value, this.profileForm.controls.email.value, this.profileForm.controls.password.value, this.profileForm.controls.firstName.value, this.profileForm.controls.lastName.value,
+     this.profileForm.controls.active.value, Array.from(this.rolesSet.values()));
   const newUser = await this.userServce.addUser(user);
-  debugger;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 onCheckChange(role: Role): void {
   this.saveRoleOfUser = role
@@ -75,6 +103,7 @@ onCheckChange(role: Role): void {
 
   if(roleChoiceString = "ADMIN") {
     this.userRoleSet.add(this.roles[0])
+  
     console.log(this.userRoleSet)
   }
   this.userRoleSet.add(this.saveRoleOfUser);

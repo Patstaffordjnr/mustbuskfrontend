@@ -1,3 +1,4 @@
+import { Active } from "./Active";
 import { Role } from "./role/Role";
 
 export class User 
@@ -5,15 +6,17 @@ export class User
 	email: string;
 	password: string;
 	firstName: string;
-	lastName: string;
+    lastName: string;
+    active: Active;
     roles: Array<Role>;
 
-    constructor(email: string, password: string, firstName: string, lastName: string, roles: Array<Role>, id?: number) {
+    constructor(id: number, email: string, password: string, firstName: string, lastName: string, active: Active, roles: Array<Role>) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.active =  active;
         this.roles = roles;
     }
 }
