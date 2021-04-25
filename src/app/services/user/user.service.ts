@@ -23,6 +23,7 @@ export class UserService {
     }
 
     async addUser(user: User): Promise<User> {
+     
         return this.http.post<User>(`${environment.site}${environment.apiUrl}${environment.version}/admin`, user).toPromise();
     }
 }

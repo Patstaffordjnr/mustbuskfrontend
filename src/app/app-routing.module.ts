@@ -8,7 +8,7 @@ import { AdminComponent } from 'src/ui/admin/admin.component';
 import { BuskerComponent } from 'src/ui/busker/busker.component';
 import { UserComponent } from 'src/ui/user/user.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
-import { ProfileManagerComponent } from './pages/profile-manager/profile-manager.component';
+import { UserManagerComponent } from './pages/profile-manager/user-manager.component';
 
 
 
@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'busker', component: BuskerComponent, canActivate: [AuthGuard] },
     { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
     { path: 'registration', component: RegistrationComponent},
-    { path: 'profile-manager', component: ProfileManagerComponent},
+    { path: 'user-manager', component: UserManagerComponent},
     // { path: 'logged-in', component: LoginComponent },
 
     // otherwise redirect to home

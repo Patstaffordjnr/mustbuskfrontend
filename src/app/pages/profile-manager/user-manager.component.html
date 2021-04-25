@@ -1,3 +1,5 @@
+
+
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <label>
         Email:
@@ -30,14 +32,19 @@
     <option *ngFor="let active of eActive | keyvalue" [ngValue]="active.value">{{active.value}}</option>
     </select>
 
+
+    
+
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 
     <div *ngFor="let role of roles; let i=index" class="col-md-2">
         <label>
           <input type="checkbox" [value]="role.roleName" (change)="onCheckChange(role)">
+          
           {{role.roleName}}
         </label>
       </div>
 
-</form>
 
+
+</form>

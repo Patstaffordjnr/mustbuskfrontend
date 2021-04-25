@@ -17,7 +17,7 @@ import { BuskerComponent } from '../ui/busker/busker.component';
 
 import { FormsModule } from '@angular/forms';
 import { RegistrationComponent } from './pages/registration/registration.component';
-import { ProfileManagerComponent } from './pages/profile-manager/profile-manager.component';
+import { UserManagerComponent } from './pages/profile-manager/user-manager.component';
 
 
 
@@ -33,6 +33,7 @@ import { ProfileManagerComponent } from './pages/profile-manager/profile-manager
         FormsModule,
         
         
+        
        
     ],
     declarations: [
@@ -43,7 +44,7 @@ import { ProfileManagerComponent } from './pages/profile-manager/profile-manager
         UserComponent,
         BuskerComponent,
         RegistrationComponent,
-        ProfileManagerComponent,
+        UserManagerComponent,
   
    
     
