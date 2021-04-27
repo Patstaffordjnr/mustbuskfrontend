@@ -73,35 +73,26 @@ onCheckChange(role: Role): Role {
  
   const formArray: FormArray = this.profileForm.get('roles') as FormArray;
 
-
-  formArray.value.RoleName.value.USER;
-  formArray.value.RoleName.value.BUSKER;
-  formArray.value.RoleName.value.ADMIN;
-
-
-
-
-
-
   this.saveRoleOfUser = role
   let roleChoice = this.saveRoleOfUser;
   let roleChoiceString =JSON.stringify(roleChoice)
 
   if(!this.userRoleSelect.has(roleChoice)) {
     this.userRoleSelect.add(roleChoice);
-    console.log(this.userRoleSelect);
-
-    formArray.push(new FormControl(roleChoice));
-    console.log(formArray.value)
-    
   } else if (this.userRoleSelect.has(roleChoice))
-  
-  
+  this.userRoleSelect.delete(roleChoice);
   {
   } return formArray.value
 } 
 
+
 async onSubmit() {
+
+  this.userRoleSelect.forEach((role: Role) => {
+    this.profileForm.value.roles.push(role);
+  });
+
+
   // TODO: Use EventEmitter with form value
   console.log(this.profileForm.value);
   let user = new User(this.profileForm.controls.id.value, this.profileForm.controls.email.value, this.profileForm.controls.password.value, this.profileForm.controls.firstName.value, this.profileForm.controls.lastName.value,
