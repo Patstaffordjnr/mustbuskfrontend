@@ -1,9 +1,9 @@
 
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
     <label>
         Email:
-        <input type="text" formControlName="email">
+        <input  type="text" formControlName="email">
     </label>
 
     <label>
@@ -32,19 +32,17 @@
     <option *ngFor="let active of eActive | keyvalue" [ngValue]="active.value">{{active.value}}</option>
     </select>
 
-
-    
-
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-
-    <div *ngFor="let role of roles; let i=index" class="col-md-2">
+    <div *ngFor="let role of roles; let i=index" class="col-md-2" >
         <label>
-          <input type="checkbox" [value]="role.roleName" (change)="onCheckChange(role)">
+          <input #checkboxes [disabled]="!profileForm.valid" type="checkbox" id="roleCheckbox" ng-model="checkbox" [value]="role.roleName" (change)="onCheckChange(role)">
           
           {{role.roleName}}
         </label>
       </div>
-
-
-
+        <button [disabled]="!profileForm.valid" type="submit" >Submit</button>
 </form>
+<div>
+    <button (click)="updateProfileForm()">Update</button>
+</div>
+
+<app-user-pagination></app-user-pagination>

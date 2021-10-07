@@ -18,6 +18,9 @@ import { BuskerComponent } from '../ui/busker/busker.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { UserManagerComponent } from './pages/profile-manager/user-manager.component';
+import { UserPaginationComponent } from './pages/profile-manager/user-pagination/user-pagination.component';
+
+
 
 
 
@@ -31,6 +34,7 @@ import { UserManagerComponent } from './pages/profile-manager/user-manager.compo
         HttpClientModule,
         AppRoutingModule,
         FormsModule,
+       
         
         
         
@@ -45,6 +49,7 @@ import { UserManagerComponent } from './pages/profile-manager/user-manager.compo
         BuskerComponent,
         RegistrationComponent,
         UserManagerComponent,
+        UserPaginationComponent,
   
    
     
