@@ -1,0 +1,13 @@
+
+
+<style>
+    .cursor {
+    cursor: copy;
+}
+</style>
+<google-map id="map" [options]="options" (mapClick)="addEvent($event)"> 
+
+</google-map>
+
+
+<button (click)="addGigButton()" class="create-marker">ADD EVENT</button>

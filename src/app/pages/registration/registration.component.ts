@@ -8,12 +8,8 @@ import { FormControl } from '@angular/forms'
 })
 export class RegistrationComponent {
 
-  name = new FormControl('');
 
-  updateName() {
-    this.name.setValue('Paddy');
-  }
-  
+
 
   constructor() { }
 

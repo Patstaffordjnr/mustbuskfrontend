@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 export class UserService {
     constructor(private http: HttpClient) { }
 
+
+
+  
     getAll() {
         return this.http.get<User[]>(`${environment.site}${environment.apiUrl}home`);
     }
@@ -25,5 +28,13 @@ export class UserService {
     async addUser(user: User): Promise<User> {
      
         return this.http.post<User>(`${environment.site}${environment.apiUrl}${environment.version}/admin`, user).toPromise();
+    }
+
+    public getUsers() {
+
+        return this.http.get<User[]>(`${environment.site}${environment.apiUrl}/admin/getId`);
+    
+        // return this.http.get<Role[]>(`${this.api}admin/roles`).toPromise();
+    
     }
 }

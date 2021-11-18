@@ -5,19 +5,31 @@ import { AuthenticationService } from './services/authentication.service';
 import { User } from './services/user/User';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
+import { Title } from '@angular/platform-browser';
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
     currentUser!: User;
 
+
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private titleService: Title,
     ) {
+
+        titleService.setTitle("MustBusk");
+
         if(this.authenticationService.currentUserValue) {
             this.currentUser = this.authenticationService.currentUserValue;
         }
+
+        
     }
+
+  
+
+    
 
     logout() {
         this.authenticationService.logout();
@@ -27,4 +39,5 @@ export class AppComponent {
         }, 1000)   
        
     }
+   
 }

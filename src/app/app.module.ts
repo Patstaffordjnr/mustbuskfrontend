@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
+
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +20,14 @@ import { BuskerComponent } from '../ui/busker/busker.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { UserManagerComponent } from './pages/profile-manager/user-manager.component';
+
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { UserPaginationComponent } from './pages/profile-manager/user-pagination/user-pagination.component';
+
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapsComponent } from './maps/maps.component'
+
+
 
 
 
@@ -34,11 +43,10 @@ import { UserPaginationComponent } from './pages/profile-manager/user-pagination
         HttpClientModule,
         AppRoutingModule,
         FormsModule,
-       
-        
-        
-        
-       
+        NgxPaginationModule,
+        GoogleMapsModule,
+        HttpClientJsonpModule,
+    
     ],
     declarations: [
         AppComponent,
@@ -50,10 +58,8 @@ import { UserPaginationComponent } from './pages/profile-manager/user-pagination
         RegistrationComponent,
         UserManagerComponent,
         UserPaginationComponent,
-  
-   
-    
-        
+        MapsComponent,
+
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

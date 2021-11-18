@@ -1,4 +1,6 @@
 {
+
+
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -23,6 +25,14 @@
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "strictPropertyInitialization": false,
+    // 
+    "compilerOptions": {
+      "outDir": "./out-tsc/app",
+      "types": ["googlemaps"]
+     },
   }
+
+  
 }

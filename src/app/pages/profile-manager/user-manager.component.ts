@@ -22,7 +22,7 @@ import { ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/cor
 export class UserManagerComponent implements  OnInit {
   
 
-
+ 
   
   loading = false;
   eActive = Active;
@@ -46,89 +46,62 @@ export class UserManagerComponent implements  OnInit {
 
 constructor(private fb: FormBuilder, private roleService: RoleService, private userServce: UserService) {
   
-
-
-
 }
 
 async ngOnInit() {
-
   this.loading = true;
    await this.roleService.getRoles().then(result => {
      this.roles = result;
-
      let roles = [this.roles[0], this.roles[1], this.roles[2]]
-
-     for (let dumb = 0; dumb < this.roles.length; dumb ++) {
+   for (let dumb = 0; dumb < this.roles.length; dumb ++) {
      }
      this.loading = false;});
-
-     
 }
-
-
-
-initModelForm(): FormGroup{
-  return this.fb.group({
-    otherControls: [''],
-    // The formArray, empty 
-    myChoices: new FormArray([]),
-  })
-}
-
 
 onCheckChange(role: Role): Role {
-  
   this.saveRoleOfUser = role
   let roleChoice = this.saveRoleOfUser;
 
-  if(!this.userRoleSelect.has(roleChoice)) {
+    if(!this.userRoleSelect.has(roleChoice)) {
     this.userRoleSelect.add(roleChoice);
   } else if (this.userRoleSelect.has(roleChoice))
-  this.userRoleSelect.delete(roleChoice);
+    this.userRoleSelect.delete(roleChoice);
   {
-
-    console.log(this.userRoleSelect)
   } return role 
 } 
-
-
 
 updateProfileForm() {
   this.checkboxes?.forEach((element) => {
     element.nativeElement.checked = false;
   });
-
   this.profileForm.controls.roles.value.length = 0
-  console.log(this.profileForm.controls.roles.value);
-
   this.userRoleSelect.clear(); 
   this.profileForm.enable();
-  
 }
 
 
 async onSubmit() {
-
   if(this.userRoleSelect.size === 0) {
     return alert("You must select a Role.")
   }
-
   this.userRoleSelect.forEach((role: Role) => {
     this.profileForm.value.roles.push(role);
   });
 
-
-  // TODO: Use EventEmitter with form value
-  console.log(this.profileForm.value);
-  let user = new User(this.profileForm.controls.id.value, this.profileForm.controls.email.value, this.profileForm.controls.password.value, this.profileForm.controls.firstName.value, this.profileForm.controls.lastName.value,
-     this.profileForm.controls.active.value, this.profileForm.controls.roles.value);
+  let user = new User(this.profileForm.controls.id.value,
+                      this.profileForm.controls.email.value,
+                      this.profileForm.controls.password.value,
+                      this.profileForm.controls.firstName.value,
+                      this.profileForm.controls.lastName.value,
+                      this.profileForm.controls.active.value,
+                      this.profileForm.controls.roles.value);
+ 
   const newUser = await this.userServce.addUser(user);
 
+  console.log(newUser);
+ 
   this.profileForm.disable();
 
-}
-
-
+};
 
 }
