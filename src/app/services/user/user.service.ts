@@ -13,10 +13,6 @@ export class UserService {
 
 
   
-    getAll() {
-        return this.http.get<User[]>(`${environment.site}${environment.apiUrl}home`);
-    }
-
     public getRoleNames(user: User) : Array<RoleName> {
         const roleNames: Array<RoleName> = new Array();
         for (let role of user.roles) { 
@@ -30,10 +26,9 @@ export class UserService {
         return this.http.post<User>(`${environment.site}${environment.apiUrl}${environment.version}/admin`, user).toPromise();
     }
 
-    public getUsers() {
-
-        return this.http.get<User[]>(`${environment.site}${environment.apiUrl}/admin/getId`);
-    
+    public getUsers(): Promise<User[]> {
+// debugger;
+        return this.http.get<User[]>(`${environment.site}${environment.apiUrl}v1/user/getAll`).toPromise();
         // return this.http.get<Role[]>(`${this.api}admin/roles`).toPromise();
     
     }
