@@ -1,1 +1,17 @@
-<button (click)="getAll()" class= "pagin">Get updated library</button>
+<!-- <button (click)="getAll()" class= "pagin">Display Users</button> -->
+
+<tr *ngFor="let user of listOfUsers; let i=index" class="col-md-2" >
+    <td>
+      {{user.id}}
+    </td>
+    <td>
+      {{user.email}}
+    </td>
+      {{user.firstName}}
+      {{user.lastName}}
+      {{user.roleName}}
+
+   
+  </tr>
+  <button (click)="downYaBoyo()" class= "pagin">Previous Page</button>
+  <button (click)="hupYaBoyo()" class= "pagin">Next Page</button>
