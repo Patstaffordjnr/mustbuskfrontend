@@ -1,46 +1,39 @@
 <!-- <button (click)="getAll()" class= "pagin">Display Users</button> -->
+<div>
+  <table>
+    <thead>
+      <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
 
 <tr *ngFor="let user of listOfUsers| paginate: { itemsPerPage: itemsPerPage, currentPage: pageNumber }" class="col-md-2" >
-    <td>
-      {{user.id}}
-    </td>
-    <td>
-      {{user.email}}
-    </td>
-      {{user.firstName}}
-      {{user.lastName}}
-      {{user.roleName}}
+  <th>{{ user.id }}</th>
+  <td>{{ user.firstName }}</td>
+  <td>{{ user.lastName }}</td>
+  <td>{{ user.email }}</td>
+  <td>
+    <button type="button" >Delete</button>
+</td>
+</tr>
 
-   
+
+</tbody>
+</table>
+</div>
+  <tr *ngFor="let item of contentPageNumbers; index as i">
+      <button (click)="onSelect(i)">{{i}}</button>
   </tr>
-  <button (click)="downYaBoyo()" class= "pagin">Previous Page</button>
-  <button (click)="hupYaBoyo()" class= "pagin">Next Page</button>
-  <button>{{pageNumber}}</button>
+  <br>
+  <button (click)="downYaBoyo()">Previous Page</button>
+  <button (click)="hupYaBoyo()">Next Page</button>
 
-<!-- 
-  <div>
-    <h1>NgFor Table Example</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of listOfUsers" let i="index">
-                <th>{{ user.id }}</th>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                
-                <td>
-                    <button type="button" >Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
+  <button (click)="onSelect(pageNumber)">{{ pageNumber }}</button>
+
+
+
