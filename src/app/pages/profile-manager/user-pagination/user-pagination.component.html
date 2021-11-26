@@ -26,14 +26,13 @@
 </tbody>
 </table>
 </div>
-  <tr *ngFor="let item of contentPageNumbers; index as i">
-      <button (click)="onSelect(i)">{{i}}</button>
+  <tr *ngFor="let item of contentPageNumbers| slice:firtsPageNumber:lastPageNumber; index as i">
+      <button (click)="onSelect(i + 1)">{{i}}</button>
   </tr>
   <br>
   <button (click)="downYaBoyo()">Previous Page</button>
+  <button (click)="onSelect(pageNumber)">{{ pageNumber  -1}}</button>
   <button (click)="hupYaBoyo()">Next Page</button>
-
-  <button (click)="onSelect(pageNumber)">{{ pageNumber }}</button>
 
 
 

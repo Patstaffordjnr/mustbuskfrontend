@@ -14,12 +14,14 @@ export class UserPaginationComponent {
   constructor(private http: HttpClient, private userServce: UserService, private changeDetection: ChangeDetectorRef) { }
 
 pageNumber = 1;
+
 itemsPerPage = 10;
 users = this.userServce.getUsers();
 listOfUsers = [];
-currentPageNumber = [this.pageNumber];
 contentPageNumbers = [];
 
+firtsPageNumber = 0;
+lastPageNumber = 5;
   async ngOnInit() {
     let aListOfUsers = await this.userServce.getUsers();
     for (let i = 0; i < aListOfUsers.length; i ++) {
@@ -33,26 +35,31 @@ contentPageNumbers = [];
       this.contentPageNumbers.push({i});
     };
     this.contentPageNumbers.length = this.contentPageNumbers.length - 9;
-
-
   }
 
 async hupYaBoyo() {
   this.pageNumber = this.pageNumber + 1;
+  this.lastPageNumber = this.lastPageNumber +1;
+  this.firtsPageNumber = this.firtsPageNumber +1;
+  console.log(this.firtsPageNumber, this.pageNumber, this.lastPageNumber);
+
 }
 async downYaBoyo() {
   this.pageNumber = this.pageNumber - 1;
-}
+  this.lastPageNumber = this.lastPageNumber -1;
+  this.firtsPageNumber = this.firtsPageNumber -1;
+  console.log(this.firtsPageNumber, this.pageNumber, this.lastPageNumber);
 
+  // this.lastPageNumber = this.lastPageNumber -1;
+}
 
 selectedPageNumber?: Number;
 onSelect(selectedPage: Number): Number {
-console.log(selectedPage);
-this.pageNumber = Number(selectedPage);
+  this.pageNumber = Number(selectedPage);
+  // this.lastPageNumber = Number(selectedPage) + 3;
   return selectedPage
-  
+ 
 }
-
 
 }
   
