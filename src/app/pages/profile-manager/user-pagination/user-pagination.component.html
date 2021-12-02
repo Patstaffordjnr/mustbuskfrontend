@@ -1,4 +1,3 @@
-<!-- <button (click)="getAll()" class= "pagin">Display Users</button> -->
 <div>
   <table>
     <thead>
@@ -11,7 +10,6 @@
       </tr>
     </thead>
     <tbody>
-
 <tr *ngFor="let user of listOfUsers| paginate: { itemsPerPage: itemsPerPage, currentPage: pageNumber }" class="col-md-2" >
   <th>{{ user.id }}</th>
   <td>{{ user.firstName }}</td>
@@ -19,20 +17,34 @@
   <td>{{ user.email }}</td>
   <td>
     <button type="button" >Delete</button>
-</td>
-</tr>
-
-
 </tbody>
 </table>
 </div>
-  <tr *ngFor="let item of contentPageNumbers| slice:firtsPageNumber:lastPageNumber; index as i">
-      <button (click)="onSelect(i + 1)">{{i}}</button>
-  </tr>
+<tr *ngFor="let item of noOfPages| slice:0:4; let i = index">
+  <td><button (click)="onSelect(dynamicPageSelection[i + 1])">{{dynamicPageSelection[i]}}</button></td>
+</tr>
   <br>
-  <button (click)="downYaBoyo()">Previous Page</button>
+  <button   (click)="downYaBoyo()">Previous Page</button>
   <button (click)="onSelect(pageNumber)">{{ pageNumber  -1}}</button>
   <button (click)="hupYaBoyo()">Next Page</button>
+<br>
+<br>
 
 
+<!-- <tr *ngFor="let item of dynamicPageSelection; index as i">
+  <td><button (click)="onSelect(i + 1)">{{dynamicPageSelection[i]}}</button></td>
+</tr> --> 
 
+<!-- <tr *ngFor="let item of noOfPages; let i = index">
+  <td>{{i}}</td>
+</tr> -->
+<!-- 
+  <div *ngFor="let item of noOfPages; let i = index">
+    <div *ngIf="i % 5 == 0" class="row">
+
+      <div *ngIf="i + 1 < dynamicPageSelection.length">{{ dynamicPageSelection[i + 1] }}</div>
+      <div *ngIf="i + 2 < dynamicPageSelection.length">{{ dynamicPageSelection[i + 2] }}</div>
+      <button (click)="onSelect(i + 3)" *ngIf="i + 3 < dynamicPageSelection.length">{{ dynamicPageSelection[i + 3] }}</button>
+      <div *ngIf="i + 4 < dynamicPageSelection.length">{{ dynamicPageSelection[i + 4] }}</div>
+    </div>
+  </div> -->

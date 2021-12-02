@@ -18,12 +18,8 @@ import { ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/cor
   styleUrls: ['./user-manager.component.css']
 })
 
-
 export class UserManagerComponent implements  OnInit {
-  
 
- 
-  
   loading = false;
   eActive = Active;
 
@@ -78,7 +74,6 @@ updateProfileForm() {
   this.userRoleSelect.clear(); 
   this.profileForm.enable();
 }
-
 
 async onSubmit() {
   if(this.userRoleSelect.size === 0) {
