@@ -1,13 +1,17 @@
 
 
-<style>
-    .cursor {
-    cursor: copy;
-}
-</style>
-<google-map id="map" [options]="options" (mapClick)="addEvent($event)"> 
+
+
+   <div class="overlay hidden">
+</div>
+<google-map class="map" id="map" [options]="options" (mapClick)="addEvent($event)"> 
 
 </google-map>
 
+<button (click)="createEvent()">Create Event</button>
 
-<button (click)="addGigButton()" class="create-marker">ADD EVENT</button>
+<br>
+    
+    <a>Khristiane</a>
+ 
+

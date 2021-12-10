@@ -19,7 +19,6 @@ listOfUsers = [];
 pageNumber = 1;
 itemsPerPage = 10;
 
-
 noOfPages = [];
 // 49;
 dynamicPageSelection = [];
@@ -51,7 +50,7 @@ x = this.pageNumber < 3;
 
 async hupYaBoyo() {
 
-  if(Number(this.dynamicPageSelection[4]) > this.noOfPages.length) {
+  if(Number(this.dynamicPageSelection[4]) > this.noOfPages.length -1) {
     return
   }
   this.pageNumber++

@@ -11,11 +11,10 @@ import { LocationService } from '../../app/maps/map-service/location.service';
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.css']
 })
+
 export class MapsComponent implements OnInit {
 
-  public boom! : String;
-  
-  options: google.maps.MapOptions = {
+   options: google.maps.MapOptions = {
     // center: {lat: 52.2922, lng: 6.9089},
     center: {lat: 52.5416592, lng: 13.4233138}, 
     zoom: 13,
@@ -29,74 +28,71 @@ export class MapsComponent implements OnInit {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0,
-      
     };
 
     function success(pos: any) {
       var crd = pos.coords;
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
+      // console.log('Your current position is:');
+      // console.log(`Latitude : ${crd.latitude}`);
+      // console.log(`Longitude: ${crd.longitude}`);
+      // console.log(`More or less ${crd.accuracy} meters.`);
     }
 
     function error(err: any) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 
-    function initMap() {
-      var coordinates = { lat: 40.785845, lng: -74.020496 };
-      var map = new google.maps.Map(document.getElementById('map')!, {
-          zoom: 14,
-          center: coordinates,
-          scrollwheel: false
-      });
-      var marker = new google.maps.Marker({
-          position: coordinates,
-          map: map,
-          label: "5409 Madison St"
-      });
-    }
-
     navigator.geolocation.getCurrentPosition(success, error, optionsAfter);
-      // Use our locationservice!
-      locationService.getPosition().then(pos => {
-        this.options.center!.lat = pos.lat;
-        this.options.center!.lng = pos.lng;
+    // Use our locationservice!
+    locationService.getPosition().then(pos => {
+      this.options.center.lat = pos.lat;
+      this.options.center.lng = pos.lng;
+    });
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+
+      navigator.geolocation.getCurrentPosition(success => {
+        /* Do some magic. */
+      }, failure => {
+        if (failure.message.startsWith("Only secure origins are allowed")) {
+          // Secure Origin issue.
+        }
       });
-      navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
+      (console.log(position.coords))
+      return;
+    })
+  }
 
-        navigator.geolocation.getCurrentPosition(success => {
-          /* Do some magic. */
-        }, failure => {
-          if (failure.message.startsWith("Only secure origins are allowed")) {
-            // Secure Origin issue.
-          }
-        });
-        return console.log(position.coords); 
-      })
-    }
+  addEvent(event: google.maps.MapMouseEvent) {
 
-    addEvent(event: google.maps.MapMouseEvent) {
-      console.log(event)
-      return event;
-    }
-
+    console.log(event)
+    return event;
+  }
   
-
-    
-    addGigButton() {
-      document.body.style.cursor = 'copy';
-      alert("Pick a location");
-    
-
-      
-
-        
+  createEvent() {
+    document.querySelector('.overlay').classList.remove('hidden');
+    const closeOverlay = function () {
+      document.querySelector('.overlay').classList.add('hidden');
+    };
+    document.querySelector('.overlay').addEventListener('click', closeOverlay);
+    document.body.style.cursor = 'copy';
     }
+    // function initMap() {
+    //   var coordinates = { lat: 40.785845, lng: -74.020496 };
+    //   var map = new google.maps.Map(document.getElementById('map')!, {
+    //       zoom: 14,
+    //       center: coordinates,
+    //       scrollwheel: false
+    //   });
+    //   var marker = new google.maps.Marker({
+    //       position: coordinates,
+    //       map: map,
+    //       label: "5409 Madison St"
+    //   });
+    // }
 
-  
+
+
     ngOnInit() {
       navigator.geolocation.getCurrentPosition((position) => {
         this.options.center = {
@@ -106,5 +102,5 @@ export class MapsComponent implements OnInit {
       })
     }
 
- 
   }
+

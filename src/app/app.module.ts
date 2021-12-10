@@ -21,11 +21,11 @@ import { FormsModule } from '@angular/forms';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { UserManagerComponent } from './pages/profile-manager/user-manager.component';
 
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { UserPaginationComponent } from './pages/profile-manager/user-pagination/user-pagination.component';
 
 import { GoogleMapsModule } from '@angular/google-maps';
-import { MapsComponent } from './maps/maps.component'
+import { MapsComponent } from './maps/maps.component';
 
 
 
